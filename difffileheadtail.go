@@ -4,7 +4,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 )
 
@@ -48,12 +47,12 @@ func DiffFileHeadTail(filename1 string, filename2 string) error {
 		// head := make([]byte, 16)
 		// tail := make([]byte, 16)
 		if fs.Size() < diffsize {
-			buf, err := ioutil.ReadAll(f)
+			buf, err := io.ReadAll(f)
 			if err != nil {
 				return nil, nil, err
 			}
 			return buf, buf, nil
-		} 
+		}
 
 		head = make([]byte, diffsize)
 		tail = make([]byte, diffsize)
